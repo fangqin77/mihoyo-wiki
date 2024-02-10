@@ -1,8 +1,8 @@
-## 地区
+数据库
 
-## 元素
+数据库版本 8.0+
 
-## 武器
 
-## 星级
+Django 5+
 
+https://docs.djangoproject.com/zh-hans/5.0/intro/tutorial01/

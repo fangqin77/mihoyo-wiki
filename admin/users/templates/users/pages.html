@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表</title>
+</head>
+
+<body>
+    {% if user_list %}
+    <ul>
+        {% for user in user_list %}
+        <li>
+            <a href="/users/user/{{ user.id }}">{{ user.username }}</a>
+            <p>
+                <span>手机号：</span><span>{{ user.phone }}</span>
+                <span>邮箱：</span><span>{{ user.email }}</span>
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>暂无用户信息.</p>
+    {% endif %}
+</body>
+
+</html>
