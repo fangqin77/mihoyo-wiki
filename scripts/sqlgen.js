@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var lodash = require('lodash');
-var state = require('./.downloads/武器/state.json');
+var state = require('./.downloads/圣遗物/state.json');
 const fileUtils = require('./urils/file.js');
 const axios = require('axios');
 
@@ -12,7 +12,6 @@ function sleep(second) {
   ChildProcess_ExecSync('sleep ' + second);
 }
 
-const errList = [];
 // 内容
 const detailUrl =
   'https://api-takumi-static.mihoyo.com/hoyowiki/genshin/wapi/entry_page?app_sn=ys_obc&entry_page_id=${id}&lang=zh-cn';
@@ -31,21 +30,15 @@ const bootstrap = async () => {
 
     const r = wikiList[index];
     console.log('正在处理', r.title);
-    const ext = lodash.get(JSON.parse(r.ext), 'c_5.filter.text');
     const url = detailUrl.replace('${id}', r.content_id);
     const detailRes = await axios.get(url);
     const detailData = lodash.get(detailRes, 'data.data.page') || {};
     const basicData = JSON.parse(
       lodash.get(detailData, 'modules[0].components[0].data') || '{}'
     );
-    const descData = JSON.parse(
-      lodash.get(detailData, 'modules[1].components[0].data') || '{}'
-    );
     const sqlData = {
       ...detailData,
       ...basicData,
-      ...descData,
-      ext,
     };
 
     const {
@@ -53,17 +46,13 @@ const bootstrap = async () => {
       template_id,
       desc,
       icon_url,
-      star,
-      category,
-      image,
-      rich_text,
-      attr,
+      list,
     } = sqlData;
 
     const sql_item = `
     insert into
-    wiki_weapon
-    (name, content_id, template_id, description, icon_url, star, category, image, rich_text, attrs)
+    wiki_equipment
+    (name, content_id, template_id, description, icon_url, rich_base_info)
     values
     (
     \"${name}\",
@@ -71,11 +60,7 @@ const bootstrap = async () => {
     \"${template_id}\",
     ${mysql.escape(desc)},
     \"${icon_url}\",
-    \"${star}\",
-    \"${category}\",
-    \"${image}\",
-    ${mysql.escape(rich_text)},
-    ${mysql.escape(JSON.stringify(attr))}
+    ${mysql.escape(JSON.stringify(list))}
     );
     `;
 
@@ -84,7 +69,7 @@ const bootstrap = async () => {
     sql = sql + sql_item + '\n';
   }
 
-  await fileUtils.saveContent('./weapons.sql', sql);
+  await fileUtils.saveContent('./equipments.sql', sql);
 };
 
 bootstrap();
