@@ -47,3 +47,20 @@ class Weapon(models.Model):
     rich_text = models.CharField(max_length=999)
     # 属性
     attrs = models.CharField(max_length=999)
+
+#圣遗物信息
+
+class Equipment(models.Model):
+    # 名称
+    name = models.CharField(max_length=100)
+    # 内容ID（米哈游的ID）
+    content_id = models.CharField(max_length=100)
+    # 模板id（米哈游的）
+    template_id =  models.CharField(max_length=255)
+    # 描述
+    description = models.CharField(max_length=999)
+    # 图片
+    icon_url = models.CharField(max_length=255)
+    #基础信息
+    rich_base_info = models.TextField()
+

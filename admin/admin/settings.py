@@ -80,13 +80,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'wiki',
         'USER':'root',
-        'PASSWORD': 'Kirito@777',
-        'HOST':'localhost',
+        'PASSWORD': 'Admin@777',
+        'HOST':'127.0.0.1',
         'PORT':'3306',
-        # 'MYSQL': {
-        #     'driver': 'mysqlclient',
-        #     'charset': 'utf8mb4',
-        # }
+        'MYSQL': {
+            'driver': 'mysqlclient',
+            'charset': 'utf8mb4',
+        }
     }
 }
 

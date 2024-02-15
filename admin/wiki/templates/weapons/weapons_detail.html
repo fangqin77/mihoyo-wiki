@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武器详情</title>
+    <style>
+        body,
+        ul,
+        li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+        <!-- 基础信息 -->
+        <section class="basic-info">
+            <div class="info-container">
+                <img src="{{ weapon.image }}" alt="{{weapon.name}}">
+                <h1 class="name">{{ weapon.name }}</h1>
+                <p class="star">{{ weapon.star }}</p>
+                <p class="category">{{ weapon.category }}</p>
+                <p class="desc">{{ weapon.description }}</p>
+                <p class="rich_text">{{ weapon.rich_text }}</p>
+                <!-- {% if weapon.attrs %}
+                <ul class="attr-list">
+                    {% for attr in weapon.attrs %}
+                    <li>
+                        <span>{{ attr.key }}</span>
+                        <span>{{ attr.value }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p></p>
+                {% endif %} -->
+            </div>
+        </section>
+    
+        <p>
+            {{ weapon.attrs }}
+        </p>
+        <script>
+            const attrStr = '{{ weapon.attrs }}';
+        </script>
+    </body>
+    
+</body>
+</html>
