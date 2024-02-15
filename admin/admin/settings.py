@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',     
+    'wiki.apps.WikiConfig',
+    # 'users.apps.UsersConfig',     
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,15 +78,15 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'users',
+        'NAME': 'wiki',
         'USER':'root',
         'PASSWORD': 'Kirito@777',
-        'HOST':'192.168.1.103',
+        'HOST':'localhost',
         'PORT':'3306',
-        'MYSQL': {
-            'driver': 'mysqlclient',
-            'charset': 'utf8mb4',
-        }
+        # 'MYSQL': {
+        #     'driver': 'mysqlclient',
+        #     'charset': 'utf8mb4',
+        # }
     }
 }
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详情</title>
+    <style>
+        body,
+        ul,
+        li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 基础信息 -->
+    <section class="basic-info">
+        <div class="info-container">
+            <img src="{{ role.avatar_pc }}" alt="role.name">
+            <h1 class="name">{{ role.name }}</h1>
+            <p class="star">{{ role.star }}</p>
+            <p class="desc">{{ role.description }}</p>
+            <!-- {% if role.attrs %}
+            <ul class="attr-list">
+                {% for attr in role.attrs %}
+                <li>
+                    <span>{{ attr.key }}</span>
+                    <span>{{ attr.value }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p></p>
+            {% endif %} -->
+        </div>
+    </section>
+
+    <p>
+        {{ role.attrs }}
+    </p>
+    <script>
+        const attrStr = '{{ role.attrs }}';
+    </script>
+</body>
+
+</html>
